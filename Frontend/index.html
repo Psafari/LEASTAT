@@ -22,7 +22,7 @@
             </div>
             <div class="nav-menu">
                 <a href="#dashboard" class="nav-link active" data-section="dashboard">Dashboard</a>
-                <a href="#upload" class="nav-link" data-section="upload">Upload Data</a>
+                <a href="/Frontend/components/upload.html" class="nav-link" data-section="upload">Upload Data</a>
                 <a href="#analytics" class="nav-link" data-section="analytics">Analysis</a>
                 <a href="#reports" class="nav-link" data-section="reports">Reports & Insights</a>
             </div>
@@ -116,49 +116,7 @@
             </div>
         </section>
 
-        <!-- Upload Section -->
-        <section id="upload-section" class="content-section">
-            <div class="upload-header">
-                <h1>Data upload Portal</h1>
-                <p>Upload and validate your data files</p>
-            </div>
-            
-            <div class="upload-container">
-                <div class="upload-area">
-                    <div class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-                    <h3>Drag & Drop Files Here</h3>
-                    <p>or click to browse and select files</p>
-                    <input type="file" id="file-input" multiple accept=".xlsx,.xls,.csv" hidden>
-                    <button class="upload-btn" onclick="document.getElementById('file-input').click()">
-                        Choose Files
-                    </button>
-                </div>
-                
-                <div class="upload-info">
-                    <h4>Supported Formats</h4>
-                    <ul>
-                        <li>Excel Files (.xlsx, .xls)</li>
-                        <li>CSV Files (.csv)</li>
-                        <li>Maximum file size: 50MB</li>
-                    </ul>
-                </div>
-            </div>
 
-            <div class="upload-progress" id="upload-progress" style="display: none;">
-                <h3>Processing Files...</h3>
-                <div class="progress-bar">
-                    <div class="progress-fill"></div>
-                </div>
-                <p class="progress-text">0% Complete</p>
-            </div>
-
-            <div class="uploaded-files" id="uploaded-files">
-                <h3>Recently Uploaded Files</h3>
-                <div class="files-list">
-                    <!-- Files will be dynamically added here -->
-                </div>
-            </div>
-        </section>
 
         <!-- Analytics Section -->
         <section id="analytics-section" class="content-section">

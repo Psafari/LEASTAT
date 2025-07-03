@@ -1,0 +1,1 @@
+Date	Leaside		Leaside_Occupancy	Leaside_ADR	 Apts	Apts_Occupancy	Apts_ADR	Hotel	Hotel_Occupancy	Hotel_ADR	Spa Service	Medispa		Products	Bistro & Extras 	Riverside	Monastery Health	Villa Nova	Total

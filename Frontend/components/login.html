@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - LEASTAT Data Management Platform</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/forms.css">
+    <link rel="stylesheet" href="../styles/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <div class="auth-container">
+        <!-- Header -->
+        <div class="auth-header">
+            <h1>LEASTAT</h1>
+            <p>Data Analysis Platform for the LeasideGroup</p>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="auth-tabs">
+            <button class="auth-tab active" data-tab="signin">Sign In</button>
+            <button class="auth-tab" data-tab="signup">Sign Up</button>
+        </div>
+
+        <!-- Forms Container -->
+        <div class="auth-forms">
+            <!-- Sign In Form -->
+            <form id="signin-form" class="auth-form active" method="POST" action="/api/auth/signin">
+                <div class="form-group">
+                    <label for="signin-email" class="required">Email Address</label>
+                    <input 
+                        type="email" 
+                        id="signin-email" 
+                        name="email"
+                        class="form-input" 
+                        data-validate="required|email"
+                        placeholder="Enter your email address"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="signin-department" class="required">Department</label>
+                    <select 
+                        id="signin-department" 
+                        name="department"
+                        class="form-select" 
+                        data-validate="required"
+                        required
+                    >
+                        <option value="">Select your department</option>
+                        <option value="front-desk">Front Desk</option>
+                        <option value="manager">Manager</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="signin-password" class="required">Password</label>
+                    <input 
+                        type="password" 
+                        id="signin-password" 
+                        name="password"
+                        class="form-input" 
+                        data-validate="required|min:6"
+                        placeholder="Enter your password"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <div class="loading-spinner"></div>
+                    <span class="btn-text">
+                        <i class="fa-solid fa-sign-in-alt"></i>
+                        Sign In
+                    </span>
+                </button>
+
+                <div class="forgot-password">
+                    <a href="#" id="forgot-password-link">Forgot your password?</a>
+                </div>
+            </form>
+
+            <!-- Sign Up Form -->
+            <form id="signup-form" class="auth-form" method="POST" action="/api/auth/signup">
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="signup-firstname" class="required">First Name</label>
+                        <input 
+                            type="text" 
+                            id="signup-firstname" 
+                            name="firstname"
+                            class="form-input" 
+                            data-validate="required|min:2|max:30"
+                            placeholder="First name"
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-lastname" class="required">Last Name</label>
+                        <input 
+                            type="text" 
+                            id="signup-lastname" 
+                            name="lastname"
+                            class="form-input" 
+                            data-validate="required|min:2|max:30"
+                            placeholder="Last name"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="signup-email" class="required">Email Address</label>
+                    <input 
+                        type="email" 
+                        id="signup-email" 
+                        name="email"
+                        class="form-input" 
+                        data-validate="required|email"
+                        placeholder="Enter your email address"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="signup-department" class="required">Department</label>
+                    <select 
+                        id="signup-department" 
+                        name="department"
+                        class="form-select" 
+                        data-validate="required"
+                        required
+                    >
+                        <option value="">Select your department</option>
+                        <option value="front-desk">Front Desk</option>
+                        <option value="manager">Manager</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="signup-password" class="required">Password</label>
+                    <input 
+                        type="password" 
+                        id="signup-password" 
+                        name="password"
+                        class="form-input" 
+                        data-validate="required|min:8"
+                        placeholder="Create a strong password"
+                        required
+                    >
+                    <div class="password-strength" id="password-strength">
+                        <div class="password-strength-label">Password strength: <span id="strength-text">Enter password</span></div>
+                        <div class="password-strength-bar">
+                            <div class="password-strength-fill" id="strength-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="signup-confirm-password" class="required">Confirm Password</label>
+                    <input 
+                        type="password" 
+                        id="signup-confirm-password" 
+                        name="confirm_password"
+                        class="form-input" 
+                        data-validate="required|match:password"
+                        placeholder="Confirm your password"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <div class="loading-spinner"></div>
+                    <span class="btn-text">
+                        <i class="fa-solid fa-user-plus"></i>
+                        Create Account
+                    </span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Footer -->
+        <div class="auth-footer">
+            <p>&copy; 2025 LeasideGroup. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script src="../scripts/validation.js"></script>
+    <script src="../scripts/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataFlow - A LeasideGroup Data Management Platform</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/forms.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h2>LEASTAT</h2>
+                <span class="nav-tagline">Data Analysis Platform for the LeasideGroup</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#dashboard" class="nav-link active" data-section="dashboard">Dashboard</a>
+                <a href="#upload" class="nav-link" data-section="upload">Upload Data</a>
+                <a href="#analytics" class="nav-link" data-section="analytics">Analysis</a>
+                <a href="#reports" class="nav-link" data-section="reports">Reports & Insights</a>
+            </div>
+            <div class="nav-user">
+                <div class="user-profile">
+                    <span class="user-name">Dion Finlay</span>
+                    <div class="user-avatar">DF</div>
+                </div>
+                <button class="logout-btn">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard-section" class="content-section active">
+            <div class="dashboard-header">
+                <h1>Overview</h1>
+                <p>General data and key performance indicators</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-calendar-days"></i></i></div>
+                    <div class="stat-content">
+                        <h3>Total Subsidiaries</h3>
+                        <p class="stat-number">8</p>
+                        <span class="stat-change positive">All subsidiaries included</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="stat-content">
+                        <h3>Data Files Processed</h3>
+                        <p class="stat-number">1,847</p>
+                        <span class="stat-change positive">+156 this week</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-dollar-sign"></i></div>
+                    <div class="stat-content">
+                        <h3>Projected Revenue for this month</h3>
+                        <p class="stat-number">$2.4M</p>
+                        <span class="stat-change positive">+12% vs last month</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-calendar-days"></i></div>
+                    <div class="stat-content">
+                        <h3>Average Daily Rate</h3>
+                        <p class="stat-number">$187.49</p>
+                        <span class="stat-change neutral">Optimal</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-charts">
+                <div class="chart-container">
+                    <h3>Overall Revenue Trends</h3>
+                    <div class="chart-placeholder">
+                        <p>Graphs and Visualisations here...</p>
+                    </div>
+                </div>
+                <div class="recent-activity">
+                    <h3>Recent Activity</h3>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon"><i class="fa-solid fa-file-arrow-up"></i></div>
+                            <div class="activity-content">
+                                <p><strong>New data file uploaded</strong></p>
+                                <span>Q4_Revenue_Report.xlsx - 2 minutes ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon"><i class="fa-solid fa-check-circle"></i></div>
+                            <div class="activity-content">
+                                <p><strong>Data validation completed</strong></p>
+                                <span>Subsidiary_Data_Batch_47 - 15 minutes ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon"><i class="fa-solid fa-chart-bar"></i></div>
+                            <div class="activity-content">
+                                <p><strong>Monthly report generated</strong></p>
+                                <span>December 2024 Summary - 1 hour ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upload Section -->
+        <section id="upload-section" class="content-section">
+            <div class="upload-header">
+                <h1>Data upload Portal</h1>
+                <p>Upload and validate your data files</p>
+            </div>
+            
+            <div class="upload-container">
+                <div class="upload-area">
+                    <div class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                    <h3>Drag & Drop Files Here</h3>
+                    <p>or click to browse and select files</p>
+                    <input type="file" id="file-input" multiple accept=".xlsx,.xls,.csv" hidden>
+                    <button class="upload-btn" onclick="document.getElementById('file-input').click()">
+                        Choose Files
+                    </button>
+                </div>
+                
+                <div class="upload-info">
+                    <h4>Supported Formats</h4>
+                    <ul>
+                        <li>Excel Files (.xlsx, .xls)</li>
+                        <li>CSV Files (.csv)</li>
+                        <li>Maximum file size: 50MB</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="upload-progress" id="upload-progress" style="display: none;">
+                <h3>Processing Files...</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <p class="progress-text">0% Complete</p>
+            </div>
+
+            <div class="uploaded-files" id="uploaded-files">
+                <h3>Recently Uploaded Files</h3>
+                <div class="files-list">
+                    <!-- Files will be dynamically added here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section id="analytics-section" class="content-section">
+            <div class="analytics-header">
+                <h1>Data Analysis</h1>
+                <p>Analyze trends and patterns in your data</p>
+            </div>
+            
+            <div class="analytics-filters">
+                <div class="filter-group">
+                    <label>Date Range</label>
+                    <select class="filter-select">
+                        <option>Last 30 days</option>
+                        <option>Last 3 months</option>
+                        <option>Last 6 months</option>
+                        <option>Last year</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Subsidiary</label>
+                    <select class="filter-select">
+                        <option>All Subsidiaries</option>
+                        <option>Leaside Manor</option>
+                        <option>Apartments</option>
+                        <option>Hotel</option>
+                        <option>Spa Service</option>
+                        <option>Medispa Service</option>
+                        <option>Products</option>
+                        <option>Bistro and Extras</option>
+                        <option>Riverside</option>
+                        <option>Monastery Health</option>
+                        <option>Villanova</option>
+                        <option>Bistro and Extras</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Metric</label>
+                    <select class="filter-select">
+                        <option>Revenue</option>
+                        <option>Average Daily Rate</option>
+                        <option>Occupancy</option>
+                        <option>Something Else</option>
+                    </select>
+                </div>
+                <button class="apply-filters-btn">Apply Filters</button>
+            </div>
+
+            <div class="analytics-charts">
+                <div class="chart-grid">
+                    <div class="chart-card">
+                        <h4>Revenue by Subsidiary</h4>
+                        <div class="chart-placeholder">Charts and graphs</div>
+                    </div>
+                    <div class="chart-card">
+                        <h4>Growth Trends</h4>
+                        <div class="chart-placeholder">Charts and graphs</div>
+                    </div>
+                    <div class="chart-card">
+                        <h4>Performance Metrics</h4>
+                        <div class="chart-placeholder">Charts and graphs</div>
+                    </div>
+                    <div class="chart-card">
+                        <h4>Comparative Analysis</h4>
+                        <div class="chart-placeholder">Charts and graphs</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reports Section -->
+        <section id="reports-section" class="content-section">
+            <div class="reports-header">
+                <h1>Reports & Export</h1>
+                <p>Generate and download comprehensive reports</p>
+            </div>
+            
+            <div class="reports-container">
+                <div class="report-templates">
+                    <h3>Report Templates</h3>
+                    <div class="template-grid">
+                        <div class="template-card">
+                            <div class="template-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                            <h4>Monthly Summary</h4>
+                            <p>Comprehensive monthly performance report</p>
+                            <button class="generate-btn">Generate</button>
+                        </div>
+                        <div class="template-card">
+                            <div class="template-icon"><i class="fa-solid fa-chart-column"></i></div>
+                            <h4>Financial Analysis</h4>
+                            <p>Detailed financial metrics and trends</p>
+                            <button class="generate-btn">Generate</button>
+                        </div>
+                        <div class="template-card">
+                            <div class="template-icon"><i class="fa-solid fa-bullseye"></i></div>
+                            <h4>Performance Review</h4>
+                            <p>Subsidiary performance comparison</p>
+                            <button class="generate-btn">Generate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-reports">
+                    <h3>Recent Reports</h3>
+                    <div class="reports-list">
+                        <div class="report-item">
+                            <div class="report-info">
+                                <h4>December 2024 Monthly Summary</h4>
+                                <p>Generated on Jan 5, 2025</p>
+                            </div>
+                            <div class="report-actions">
+                                <button class="download-btn">Download</button>
+                                <button class="view-btn">View</button>
+                            </div>
+                        </div>
+                        <div class="report-item">
+                            <div class="report-info">
+                                <h4>Q4 2024 Financial Analysis</h4>
+                                <p>Generated on Jan 3, 2025</p>
+                            </div>
+                            <div class="report-actions">
+                                <button class="download-btn">Download</button>
+                                <button class="view-btn">View</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/api.js"></script>
+    <script src="scripts/validation.js"></script>
+    <script src="upload.js"></script>
+</body>
+</html>

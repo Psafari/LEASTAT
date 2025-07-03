@@ -1,0 +1,74 @@
+Conversation with Little Hotelier
+Started on June 24, 2025 at 09:41 PM Singapore time +08 (GMT+0800)
+
+---
+
+09:41 PM | Prince Afari: Hi there! 
+ is it possible to get historical data for the past three years?
+
+09:42 PM | Sim: Little Hotelier Pay allows you to view, manage and export all payment activity (charges and refunds) as a CSV file through the Transactions feature. (https://helpcentre.littlehotelier.com/en/articles/9187990-little-hotelier-pay-get-started) You can also track payout status, estimated arrival dates and filter specific payouts to export a CSV.Additionally, monthly invoices can be generated for accounting purposes, including totals for payments, refunds and fees. 
+ What specific type of historical data are you looking to access - payment transactions, guest information, booking data, or something else? 
+ 
+Source:
+Little Hotelier Pay: Get started (https://helpcentre.littlehotelier.com/en/articles/9187990-little-hotelier-pay-get-started)
+
+09:42 PM | Prince Afari: usually booking and revenue data
+
+09:42 PM | Sim: For payment and transaction data, you can use Little Hotelier Pay's Transactions feature to view, manage and export all payment activity (charges and refunds) as a CSV file. (https://helpcentre.littlehotelier.com/en/articles/9187990-little-hotelier-pay-get-started) You can also track payout status, estimated arrival dates and filter specific payouts to export a CSV.Additionally, monthly invoices can be generated for accounting purposes, including totals for payments, refunds and fees. 
+ However, the sources provided focus specifically on payment transaction data rather than comprehensive booking data like occupancy rates, room nights sold, or detailed reservation information. 
+ Are you specifically looking to export payment transaction history, or do you need broader booking data like reservation details, occupancy statistics, and room revenue breakdowns? 
+ 
+Source:
+Little Hotelier Pay: Get started (https://helpcentre.littlehotelier.com/en/articles/9187990-little-hotelier-pay-get-started)
+
+09:43 PM | Prince Afari: yeah broader one
+
+09:43 PM | Sim: The sources focus on Little Hotelier Pay's transaction and payment data capabilities rather than comprehensive booking and revenue reporting. Little Hotelier Pay allows you to export payment activity (charges and refunds) as CSV files through the Transactions feature, and you can generate monthly invoices for accounting purposes that include totals for payments, refunds and fees. (https://helpcentre.littlehotelier.com/en/articles/9187990-little-hotelier-pay-get-started) 
+ However, for broader historical booking data like reservation details, occupancy statistics, room revenue breakdowns, and comprehensive three-year historical reports, the payment system documentation doesn't cover these reporting capabilities. 
+ Are you looking to access this data through a specific section of your Little Hotelier account, or do you need guidance on where to find the booking and occupancy reporting features? 
+ 
+Source:
+Little Hotelier Pay: Get started (https://helpcentre.littlehotelier.com/en/articles/9187990-little-hotelier-pay-get-started)
+
+09:44 PM | Prince Afari: wanted to ask the team if it's possible to have a batch file sent over for these data values instead of going through them manually
+
+09:44 PM | Sim: The available export capabilities focus on payment transaction data through Little Hotelier Pay. You can export payment activity (charges and refunds) as CSV files through the Transactions feature, and generate monthly invoices for accounting purposes that include totals for payments, refunds and fees. (https://helpcentre.littlehotelier.com/en/articles/9187990-little-hotelier-pay-get-started) 
+ However, the payment system documentation doesn't cover automated batch file delivery for comprehensive three-year historical booking and revenue data like reservation details, occupancy statistics, or room revenue breakdowns. 
+ Would you prefer to explore the existing CSV export options for payment data, or are you specifically looking for a way to get comprehensive booking data that includes occupancy rates and detailed reservation information? 
+ 
+Source:
+Little Hotelier Pay: Get started (https://helpcentre.littlehotelier.com/en/articles/9187990-little-hotelier-pay-get-started)
+
+09:44 PM | Prince Afari: can i speak with a team memner
+
+09:44 PM | Sim: The team will reply as soon as they can.
+
+09:47 PM | Ravi from Little Hotelier: Hello Prince! I'm Ravi and i'll be assisting you today. Please allow me a moment to access your account, so we can get started on resolving your query. Thank you for your patience and cooperation.
+
+09:50 PM | Ravi from Little Hotelier: Thank you for waiting. I would advise you to follow the steps try to run the report in your FRont Desk 
+ 
+ 1. Go to Front Desk > Reports 
+2. Select the date type for the report by clicking on 
+​Search by Stay date: date range your guests stayed at your property 
+3. Enter a date range: select a Date from and a Date to 
+4. Leave the Revenue includes tax option unticked if you wish to exclude tax in the report. If you tick this option, the tax from any taxable service charge will be included in the calculation. 
+5. Click Run report
+
+09:52 PM | Prince Afari: Thank you Ravi 
+ So i tried that and it outputs an aggregated data for that time range, wanted to know if for a selected time range, i could still get the daily details
+
+10:00 PM | Ravi from Little Hotelier: Thank you for waiting. My apologies, but it's not possible to get the daily details.
+
+10:01 PM | Ravi from Little Hotelier: I can see, the reports can only be generated 365 days at a time. 
+ 
+ [Image "image.png?expires=1750775400&signature=ab29a760d0768269c2b035c5c4799c342d01f2c84eb9a58a1303acf9d8f0bb1c&req=dSUvE8B%2FnohYUfMW1HO4zUgGbgI69wln7ZJpj1z33UAkxcFd2KT%2FJz1JuTEk%0A09Nq%0A"]
+
+10:03 PM | Prince Afari: Alright thank you Ravi. And it's not possible to get that from yourside as well? I mean from the support team
+
+10:05 PM | Ravi from Little Hotelier: Thank you for understanding. I apologize, but unfortunately, we do not have the capability to access any additional information beyond what you have access to.
+
+10:06 PM | Prince Afari: Sure that's fine. Thanks for the help!
+that'll be all.
+
+---
+Exported from Little Hotelier on June 24, 2025 at 10:06 PM Singapore time +08 (GMT+0800)

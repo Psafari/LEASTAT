@@ -13,9 +13,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <style>
+        /*#f3f9fd;*/
+        :root{
+            --lighter :#f3f9fd;
+            --deeper: #22313f; 
+            --brighter:#8dc6ff;
+        }
         /* Analytics Dashboard Green Theme */
         .analytics-header {
-            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            background: white;
             color: white;
             padding: 2rem;
             border-radius: 12px;
@@ -60,29 +66,29 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #10B981, #059669);
+            background: linear-gradient(90deg, #22313f, #22313f);
         }
 
         .target-card:nth-child(1)::before {
-            background: linear-gradient(90deg, #10B981, #059669);
+            background: var(--deeper)
         }
 
         .target-card:nth-child(2)::before {
-            background: linear-gradient(90deg, #34D399, #10B981);
+            background: var(--deeper);
         }
 
         .target-card:nth-child(3)::before {
-            background: linear-gradient(90deg, #6EE7B7, #34D399);
+            background: var(--deeper);
         }
 
         .target-card:nth-child(4)::before {
-            background: linear-gradient(90deg, #047857, #065F46);
+            background: var(--deeper)
         }
 
         .target-card h5 {
             font-size: 1rem;
             font-weight: 600;
-            color: #065F46;
+            color: #22313f;
             margin: 0 0 1rem 0;
             display: flex;
             align-items: center;
@@ -90,7 +96,7 @@
         }
 
         .target-card h5 i {
-            color: #10B981;
+            color: #22313f;
             font-size: 1.1rem;
         }
 
@@ -102,18 +108,18 @@
 
         .card-filter select {
             padding: 0.5rem;
-            border: 1px solid #A7F3D0;
+            border: 1px solid #22313f;
             border-radius: 6px;
             font-size: 0.8rem;
             background: white;
             flex: 1;
-            color: #065F46;
+            color: #22313f;
         }
 
         .card-filter select:focus {
             outline: none;
-            border-color: #10B981;
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+            border-color: var(--brighter);
+            /*box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);*/
         }
 
         .target-progress {
@@ -125,18 +131,18 @@
 
         .target-progress span {
             font-size: 0.875rem;
-            color: #047857;
+            color: var(--deeper);
             font-weight: 500;
         }
 
         .target-progress strong {
             font-size: 1.25rem;
-            color: #065F46;
+            color: #22313f;
         }
 
         .progress-bar {
             height: 8px;
-            background: #D1FAE5;
+            background:  #e4f1fe;
             border-radius: 4px;
             overflow: hidden;
             margin-top: 0.5rem;
@@ -144,24 +150,24 @@
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #10B981, #059669);
+            background: linear-gradient(90deg,  #e4f1fe, #22313f);
             transition: width 0.3s ease;
         }
 
         .target-card:nth-child(1) .progress-fill {
-            background: linear-gradient(90deg, #10B981, #059669);
+            background: #22313f;
         }
 
         .target-card:nth-child(2) .progress-fill {
-            background: linear-gradient(90deg, #34D399, #10B981);
+            background: #22313f;
         }
 
         .target-card:nth-child(3) .progress-fill {
-            background: linear-gradient(90deg, #6EE7B7, #34D399);
+            background: #22313f;
         }
 
         .target-card:nth-child(4) .progress-fill {
-            background: linear-gradient(90deg, #047857, #065F46);
+            background:  #22313f;
         }
 
         /* Chart Areas with Green Theme */
@@ -177,7 +183,7 @@
         .chart-section h3 {
             font-size: 1.5rem;
             font-weight: 600;
-            color: #065F46;
+            color: var(--deeper);
             margin: 0 0 1.5rem 0;
             display: flex;
             align-items: center;
@@ -188,7 +194,7 @@
             content: '';
             width: 4px;
             height: 24px;
-            background: linear-gradient(135deg, #10B981, #059669);
+            background: var(--deeper);
             border-radius: 2px;
         }
 
@@ -198,9 +204,9 @@
             gap: 1rem;
             margin-bottom: 1.5rem;
             padding: 1.5rem;
-            background: #F0FDF4;
+            background: var(--lighter);
             border-radius: 8px;
-            border: 1px solid #BBF7D0;
+            border: 1px solid var(--brighter);
         }
 
         .filter-group {
@@ -211,28 +217,28 @@
 
         .filter-group label {
             font-weight: 600;
-            color: #065F46;
+            color: var(--deeper);
             font-size: 0.9rem;
         }
 
         .filter-select {
             padding: 0.75rem;
-            border: 1px solid #A7F3D0;
+            border: 1px solid var(--deeper);
             border-radius: 8px;
             font-size: 0.9rem;
             background: white;
             transition: all 0.2s ease;
-            color: #065F46;
+            color: var(--deeper);
         }
 
         .filter-select:focus {
             outline: none;
-            border-color: #10B981;
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+            border-color: var(--brighter);
+            /*box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);*/
         }
 
         .apply-filters-btn {
-            background: linear-gradient(135deg, #10B981, #059669);
+            background: linear-gradient(135deg,  #22313f,  #22313f);
             color: white;
             border: none;
             padding: 0.75rem 1.5rem;
@@ -250,13 +256,13 @@
         }
 
         .apply-filters-btn:hover {
-            background: linear-gradient(135deg, #059669, #047857);
+            background: linear-gradient(135deg,  #22313f,  #22313f);
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 4px 12px rgba(20, 78, 212, 0.3);
         }
 
         .apply-filters-btn:disabled {
-            background: #9CA3AF;
+            background: #f3f9fd;
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
@@ -266,13 +272,13 @@
             height: 400px;
             margin-bottom: 1.5rem;
             position: relative;
-            background: #F0FDF4;
+            background: var(--lighter);
             border-radius: 8px;
             padding: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid #BBF7D0;
+            border: 1px solid var(--brighter);
         }
 
         .chart-container canvas {
@@ -285,10 +291,10 @@
             justify-content: space-between;
             gap: 1rem;
             padding: 1rem;
-            background: #F0FDF4;
+            background: var(--lighter);
             border-radius: 8px;
             flex-wrap: wrap;
-            border: 1px solid #BBF7D0;
+            border: 1px solid var(--brighter);
         }
 
         .summary-item {
@@ -301,18 +307,18 @@
 
         .summary-item span {
             font-size: 0.875rem;
-            color: #047857;
+            color: #22313f;
             font-weight: 500;
         }
 
         .summary-item strong {
             font-size: 1.125rem;
-            color: #065F46;
+            color: #22313f;
             font-weight: 700;
         }
 
         .export-btn {
-            background: linear-gradient(135deg, #059669, #10B981);
+            background: #22313f;
             color: white;
             border: none;
             padding: 0.5rem 1rem;
@@ -327,7 +333,7 @@
 
         .export-btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(5, 150, 105, 0.3);
+            box-shadow: 0 4px 12px rgba(20, 78, 212, 0.3);
         }
 
         .chart-header {
@@ -338,7 +344,7 @@
         }
 
         .chart-header h4 {
-            color: #065F46;
+            color: #22313f;
             font-size: 1.2rem;
             font-weight: 600;
         }
@@ -356,7 +362,7 @@
         .faq-section h3 {
             font-size: 1.5rem;
             font-weight: 600;
-            color: #065F46;
+            color: #22313f;
             margin: 0 0 1.5rem 0;
             display: flex;
             align-items: center;
@@ -367,37 +373,37 @@
             content: '';
             width: 4px;
             height: 24px;
-            background: linear-gradient(135deg, #10B981, #059669);
+            background: #22313f;
             border-radius: 2px;
         }
 
         .faq-item {
-            border: 1px solid #BBF7D0;
+            border: 1px solid var(--brighter); 
             border-radius: 8px;
             margin-bottom: 1rem;
             overflow: hidden;
         }
 
         .faq-question {
-            background: #F0FDF4;
+            background: #f3f9fd;
             padding: 1rem;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-weight: 600;
-            color: #065F46;
+            color: #22313f;
             transition: background-color 0.2s ease;
         }
 
         .faq-question:hover {
-            background: #DCFCE7;
+            background: #e4f1fe;
         }
 
         .faq-answer {
             padding: 1rem;
             background: white;
-            color: #047857;
+            color: #22313f;
             line-height: 1.6;
             display: none;
         }
@@ -408,7 +414,7 @@
 
         .faq-icon {
             transition: transform 0.2s ease;
-            color: #10B981;
+            color: #22313f;
         }
 
         .faq-icon.active {
@@ -417,12 +423,12 @@
 
         /* Loading states */
         .loading-spinner {
-            color: #10B981;
+            color: #22313f;
             font-size: 1.1rem;
         }
 
         .loading-spinner i {
-            color: #10B981;
+            color: #22313f;
         }
 
         /* Error notifications */

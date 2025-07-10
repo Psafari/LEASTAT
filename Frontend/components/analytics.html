@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataFlow - Analytics</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/forms.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        /* Analytics Dashboard Green Theme */
+        .analytics-header {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.15);
+        }
+
+        .analytics-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .analytics-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        /* Revenue Target Cards with Green Theme */
+        .revenue-targets {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .target-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.08);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(16, 185, 129, 0.1);
+        }
+
+        .target-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #10B981, #059669);
+        }
+
+        .target-card:nth-child(1)::before {
+            background: linear-gradient(90deg, #10B981, #059669);
+        }
+
+        .target-card:nth-child(2)::before {
+            background: linear-gradient(90deg, #34D399, #10B981);
+        }
+
+        .target-card:nth-child(3)::before {
+            background: linear-gradient(90deg, #6EE7B7, #34D399);
+        }
+
+        .target-card:nth-child(4)::before {
+            background: linear-gradient(90deg, #047857, #065F46);
+        }
+
+        .target-card h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #065F46;
+            margin: 0 0 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .target-card h5 i {
+            color: #10B981;
+            font-size: 1.1rem;
+        }
+
+        .card-filter {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-filter select {
+            padding: 0.5rem;
+            border: 1px solid #A7F3D0;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            background: white;
+            flex: 1;
+            color: #065F46;
+        }
+
+        .card-filter select:focus {
+            outline: none;
+            border-color: #10B981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .target-progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .target-progress span {
+            font-size: 0.875rem;
+            color: #047857;
+            font-weight: 500;
+        }
+
+        .target-progress strong {
+            font-size: 1.25rem;
+            color: #065F46;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #D1FAE5;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10B981, #059669);
+            transition: width 0.3s ease;
+        }
+
+        .target-card:nth-child(1) .progress-fill {
+            background: linear-gradient(90deg, #10B981, #059669);
+        }
+
+        .target-card:nth-child(2) .progress-fill {
+            background: linear-gradient(90deg, #34D399, #10B981);
+        }
+
+        .target-card:nth-child(3) .progress-fill {
+            background: linear-gradient(90deg, #6EE7B7, #34D399);
+        }
+
+        .target-card:nth-child(4) .progress-fill {
+            background: linear-gradient(90deg, #047857, #065F46);
+        }
+
+        /* Chart Areas with Green Theme */
+        .chart-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.08);
+            margin-bottom: 2rem;
+            border: 1px solid rgba(16, 185, 129, 0.1);
+        }
+
+        .chart-section h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #065F46;
+            margin: 0 0 1.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chart-section h3::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(135deg, #10B981, #059669);
+            border-radius: 2px;
+        }
+
+        .chart-filters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: #F0FDF4;
+            border-radius: 8px;
+            border: 1px solid #BBF7D0;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: #065F46;
+            font-size: 0.9rem;
+        }
+
+        .filter-select {
+            padding: 0.75rem;
+            border: 1px solid #A7F3D0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            background: white;
+            transition: all 0.2s ease;
+            color: #065F46;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: #10B981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .apply-filters-btn {
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-self: end;
+            min-width: 140px;
+            justify-content: center;
+        }
+
+        .apply-filters-btn:hover {
+            background: linear-gradient(135deg, #059669, #047857);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .apply-filters-btn:disabled {
+            background: #9CA3AF;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .chart-container {
+            height: 400px;
+            margin-bottom: 1.5rem;
+            position: relative;
+            background: #F0FDF4;
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #BBF7D0;
+        }
+
+        .chart-container canvas {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .chart-summary {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1rem;
+            background: #F0FDF4;
+            border-radius: 8px;
+            flex-wrap: wrap;
+            border: 1px solid #BBF7D0;
+        }
+
+        .summary-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .summary-item span {
+            font-size: 0.875rem;
+            color: #047857;
+            font-weight: 500;
+        }
+
+        .summary-item strong {
+            font-size: 1.125rem;
+            color: #065F46;
+            font-weight: 700;
+        }
+
+        .export-btn {
+            background: linear-gradient(135deg, #059669, #10B981);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .export-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(5, 150, 105, 0.3);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .chart-header h4 {
+            color: #065F46;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* FAQ Section with Green Theme */
+        .faq-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.08);
+            margin-bottom: 2rem;
+            border: 1px solid rgba(16, 185, 129, 0.1);
+        }
+
+        .faq-section h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #065F46;
+            margin: 0 0 1.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .faq-section h3::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(135deg, #10B981, #059669);
+            border-radius: 2px;
+        }
+
+        .faq-item {
+            border: 1px solid #BBF7D0;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: #F0FDF4;
+            padding: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #065F46;
+            transition: background-color 0.2s ease;
+        }
+
+        .faq-question:hover {
+            background: #DCFCE7;
+        }
+
+        .faq-answer {
+            padding: 1rem;
+            background: white;
+            color: #047857;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .faq-icon {
+            transition: transform 0.2s ease;
+            color: #10B981;
+        }
+
+        .faq-icon.active {
+            transform: rotate(180deg);
+        }
+
+        /* Loading states */
+        .loading-spinner {
+            color: #10B981;
+            font-size: 1.1rem;
+        }
+
+        .loading-spinner i {
+            color: #10B981;
+        }
+
+        /* Error notifications */
+        .error-notification {
+            background: #FEF2F2;
+            border: 1px solid #FECACA;
+            color: #DC2626;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .chart-filters {
+                grid-template-columns: 1fr;
+            }
+            
+            .apply-filters-btn {
+                justify-self: stretch;
+            }
+            
+            .chart-summary {
+                flex-direction: column;
+            }
+            
+            .chart-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h2>LEASTAT</h2>
+                <span class="nav-tagline">Data Analysis Platform for the LeasideGroup</span>
+            </div>
+            <div class="nav-menu">
+                <a href="../index.html" class="nav-link" data-section="dashboard">Dashboard</a>
+                <a href="upload.html" class="nav-link" data-section="upload">Upload Data</a>
+                <a href="analytics.html" class="nav-link active" data-section="analytics">Analysis</a>
+                <a href="reports.html" class="nav-link" data-section="reports">Reports & Insights</a>
+            </div>
+            <div class="nav-user">
+                <div class="user-profile">
+                    <span class="user-name">Dion Finlay</span>
+                    <div class="user-avatar">DF</div>
+                </div>
+                <button class="logout-btn">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Analytics Section -->
+        <section id="analytics-section" class="content-section active">
+            <div class="analytics-header">
+                <h1>Data Analysis</h1>
+                <p>Comprehensive analytics dashboard for revenue, occupancy, and operational insights</p>
+            </div>
+
+            <!-- Revenue vs Target Cards with Individual Filters -->
+            <div class="revenue-targets">
+                <div class="target-card">
+                    <h5><i class="fas fa-building"></i> Accommodations</h5>
+                    <div class="card-filter">
+                        <select id="accommodations-month">
+                            <option value="" selected disabled>Select Month</option>
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                        <select id="accommodations-year">
+                            <option value="" selected disabled>Select Year</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                        </select>
+                    </div>
+                    <div class="target-progress">
+                        <span>Current</span>
+                        <strong id="accommodations-current">$4,924.75</strong>
+                    </div>
+                    <div class="target-progress">
+                        <span>Target</span>
+                        <strong id="accommodations-target">$150,000</strong>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="accommodations-progress" style="width: 3.3%"></div>
+                    </div>
+                </div>
+
+                <div class="target-card">
+                    <h5><i class="fas fa-heartbeat"></i> Health</h5>
+                    <div class="card-filter">
+                        <select id="health-month">
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7" selected>July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                        <select id="health-year">
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025" selected>2025</option>
+                        </select>
+                    </div>
+                    <div class="target-progress">
+                        <span>Current</span>
+                        <strong id="health-current">$3,400.70</strong>
+                    </div>
+                    <div class="target-progress">
+                        <span>Target</span>
+                        <strong id="health-target">$105,000</strong>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="health-progress" style="width: 3.2%"></div>
+                    </div>
+                </div>
+
+                <div class="target-card">
+                    <h5><i class="fas fa-utensils"></i> Restaurants</h5>
+                    <div class="card-filter">
+                        <select id="restaurants-month">
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7" selected>July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                        <select id="restaurants-year">
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025" selected>2025</option>
+                        </select>
+                    </div>
+                    <div class="target-progress">
+                        <span>Current</span>
+                        <strong id="restaurants-current">$7,189.58</strong>
+                    </div>
+                    <div class="target-progress">
+                        <span>Target</span>
+                        <strong id="restaurants-target">$220,000</strong>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="restaurants-progress" style="width: 3.3%"></div>
+                    </div>
+                </div>
+
+                <div class="target-card">
+                    <h5><i class="fas fa-chart-line"></i> Total Revenue</h5>
+                    <div class="card-filter">
+                        <select id="total-month">
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7" selected>July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                        <select id="total-year">
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025" selected>2025</option>
+                        </select>
+                    </div>
+                    <div class="target-progress">
+                        <span>Current</span>
+                        <strong id="total-current">$15,514.03</strong>
+                    </div>
+                    <div class="target-progress">
+                        <span>Target</span>
+                        <strong id="total-target">$475,000</strong>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="total-progress" style="width: 3.3%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart Area 1: Trends and Breakdown -->
+            <div class="chart-section">
+                <h3>Trends and Breakdown</h3>
+                <div class="chart-filters">
+                    <div class="filter-group">
+                        <label>Date Range</label>
+                        <select class="filter-select" id="trends-date-range">
+                            <option value="" selected >Select Date Range</option>
+                            <option value="7">Last 7 days</option>
+                            <option value="30">Last 30 days</option>
+                            <option value="90">Last 3 months</option>
+                            <option value="365">Last year</option>
+                            <option value="custom">Custom Range</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Metric</label>
+                        <select class="filter-select" id="trends-metric">
+                            <option value="" selected >Select Metric</option>
+                            <option value="revenue">Revenue</option>
+                            <option value="occupancy">Occupancy</option>
+                            <option value="adr">ADR</option>
+                            <option value="composition">Revenue Composition</option>
+                        </select>
+                    </div>
+                    <div class="filter-group" id = "property-filter-group">
+                        <label>Property</label>
+                        <select class="filter-select" id="trends-property" >
+                            <option value="" selected >Select Property</option>
+                            <option value="all">All Properties</option>
+                            <option value="leaside-manor">Leaside Manor</option>
+                            <option value="apartments">Apartments</option>
+                            <option value="monastery-suites">Monastery Suites</option>
+                            <option value="spa-services">Spa Services</option>
+                            <option value="medispa-services">Medispa Services</option>
+                            <option value="bistro">Bistro</option>
+                            <option value="riverside-therapeutics">Riverside Therapeutics</option>
+                            <option value="villanova-physio">Villanova Physio</option>
+                            <option value="monastery-health">Monastery Health</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Breakdown By</label>
+                        <select class="filter-select" id="trends-breakdown">
+                            <option value="" selected >Select Breakdown</option>
+                            <option value="day">Day</option>
+                            <option value="week">Week</option>
+                            <option value="month">Month</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>&nbsp;</label>
+                        <button class="apply-filters-btn" id="apply-trends-filters">
+                            <i class="fas fa-filter"></i> Apply Filters
+                        </button>
+                    </div>
+                </div>
+                <div class="chart-header">
+                    <h4 id="trends-chart-title">Revenue Trends</h4>
+                    <button class="export-btn" onclick="exportChart('trends-chart')">
+                        <i class="fas fa-download"></i> Export
+                    </button>
+                </div>
+                <div class="chart-container">
+                    <canvas id="trends-chart"></canvas>
+                </div>
+                <div class="chart-summary">
+                    <div class="summary-item">
+                        <span id="trends-summary-1-label">Total Revenue</span>
+                        <strong id="trends-summary-1-value">$15,514.03</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span id="trends-summary-2-label">Average Revenue</span>
+                        <strong id="trends-summary-2-value">$517.13</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart Area 2: Sales -->
+            <div class="chart-section">
+                <h3>Sales</h3>
+                <div class="chart-filters">
+                    <div class="filter-group">
+                        <label>Date Range</label>
+                        <select class="filter-select" id="sales-date-range">
+                            <option value="7">Last 7 days</option>
+                            <option value="30" selected>Last 30 days</option>
+                            <option value="90">Last 3 months</option>
+                            <option value="365">Last year</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Sales By</label>
+                        <select class="filter-select" id="sales-by">
+                            <option value="products">Products</option>
+                            <option value="spa">Spa Services</option>
+                            <option value="mh">MH Services</option>
+                            <option value="vp">VP Services</option>
+                            <option value="rt">RT Services</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>&nbsp;</label>
+                        <button class="apply-filters-btn" id="apply-sales-filters">
+                            <i class="fas fa-filter"></i> Apply Filters
+                        </button>
+                    </div>
+                </div>
+                <div class="chart-header">
+                    <h4 id="sales-chart-title">Product Sales</h4>
+                    <button class="export-btn" onclick="exportChart('sales-chart')">
+                        <i class="fas fa-download"></i> Export
+                    </button>
+                </div>
+                <div class="chart-container">
+                    <canvas id="sales-chart"></canvas>
+                </div>
+                <div class="chart-summary">
+                    <div class="summary-item">
+                        <span id="sales-summary-1-label">Total Sales</span>
+                        <strong id="sales-summary-1-value">$4,250.00</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span id="sales-summary-2-label">Top Item</span>
+                        <strong id="sales-summary-2-value">Massage Therapy</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="faq-section">
+                <h3>Terms & Definitions</h3>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What is ADR (Average Daily Rate)?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        ADR stands for Average Daily Rate. It represents the average rental income per occupied room in a given time period. It's calculated by dividing total room revenue by the number of rooms sold.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What is RevPAR (Revenue Per Available Room)?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        RevPAR is a key performance metric that measures revenue generated per available room. It's calculated by multiplying ADR by occupancy rate, or by dividing total room revenue by total available rooms.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What is Occupancy Rate?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Occupancy rate is the percentage of available rooms that are occupied during a specific time period. It's calculated by dividing the number of occupied rooms by the total number of available rooms.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What is Lead Time?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Lead time refers to the number of days between when a booking is made and the actual check-in date. It helps understand booking patterns and customer behavior.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What is Length of Stay (LOS)?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Length of Stay (LOS) is the average number of nights guests stay during their visit. It's calculated by dividing total room nights by the number of reservations.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What are Revenue Targets?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Revenue targets are predetermined financial goals set for different business segments (accommodations, health services, restaurants) to measure performance against expected outcomes.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Analytics Dashboard JavaScript
+        // Analytics Dashboard JavaScript - Frontend Display Layer
+        
+        class AnalyticsDashboard {
+            constructor() {
+                this.charts = {};
+                this.apiBase = '/api/analytics';
+                this.initializeCharts();
+                this.setupEventListeners();
+                this.setupMetricLogic(); // Add this line
+                this.loadInitialData();
+            }
+
+            async loadInitialData() {
+                try {
+                    // Load initial data from backend
+                    await Promise.all([
+                        this.loadTargetCards(),
+                        this.loadTrendsChart(),
+                        this.loadSalesChart()
+                    ]);
+                } catch (error) {
+                    console.error('Error loading initial data:', error);
+                    this.showError('Failed to load dashboard data');
+                }
+            }
+
+            async loadTargetCards() {
+                try {
+                    const response = await fetch(`${this.apiBase}/targets`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${this.getAuthToken()}`
+                        }
+                    });
+
+                    if (!response.ok) throw new Error('Failed to fetch target data');
+                    
+                    const data = await response.json();
+                    this.updateTargetCards(data);
+                } catch (error) {
+                    console.error('Error loading target cards:', error);
+                    this.showError('Failed to load revenue targets');
+                }
+            }
+
+            async loadTrendsChart(filters = {}) {
+                try {
+                    const params = new URLSearchParams({
+                        metric: filters.metric || 'revenue',
+                        dateRange: filters.dateRange || '30',
+                        property: filters.property || 'all',
+                        breakdown: filters.breakdown || 'day'
+                    });
+
+                    const response = await fetch(`${this.apiBase}/trends?${params}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${this.getAuthToken()}`
+                        }
+                    });
+
+                    if (!response.ok) throw new Error('Failed to fetch trends data');
+                    
+                    const data = await response.json();
+                    this.updateTrendsChart(data);
+                } catch (error) {
+                    console.error('Error loading trends chart:', error);
+                    this.showError('Failed to load trends data');
+                }
+            }
+
+            async loadSalesChart(filters = {}) {
+                try {
+                    const params = new URLSearchParams({
+                        salesBy: filters.salesBy || 'products',
+                        dateRange: filters.dateRange || '30'
+                    });
+
+                    const response = await fetch(`${this.apiBase}/sales?${params}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${this.getAuthToken()}`
+                        }
+                    });
+
+                    if (!response.ok) throw new Error('Failed to fetch sales data');
+                    
+                    const data = await response.json();
+                    this.updateSalesChart(data);
+                } catch (error) {
+                    console.error('Error loading sales chart:', error);
+                    this.showError('Failed to load sales data');
+                }
+            }
+
+            async updateCardData(cardType) {
+                try {
+                    const month = document.getElementById(`${cardType}-month`).value;
+                    const year = document.getElementById(`${cardType}-year`).value;
+                    
+                    const response = await fetch(`${this.apiBase}/targets/${cardType}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${this.getAuthToken()}`
+                        },
+                        body: JSON.stringify({ month, year })
+                    });
+
+                    if (!response.ok) throw new Error('Failed to update card data');
+                    
+                    const data = await response.json();
+                    this.updateSingleTargetCard(cardType, data);
+                } catch (error) {
+                    console.error('Error updating card data:', error);
+                    this.showError(`Failed to update ${cardType} data`);
+                }
+            }
+
+            initializeCharts() {
+                this.initializeTrendsChart();
+                this.initializeSalesChart();
+            }
+
+            initializeTrendsChart() {
+                const ctx = document.getElementById('trends-chart').getContext('2d');
+                this.charts.trends = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: [],
+                        datasets: [{
+                            label: 'Revenue',
+                            data: [],
+                            borderColor: '#3B82F6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        return '$' + value.toLocaleString();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            initializeSalesChart() {
+                const ctx = document.getElementById('sales-chart').getContext('2d');
+                this.charts.sales = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: [],
+                        datasets: [{
+                            label: 'Sales',
+                            data: [],
+                            backgroundColor: [
+                                '#10B981',
+                                '#3B82F6',
+                                '#8B5CF6',
+                                '#F59E0B',
+                                '#EF4444'
+                            ]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        return '$' + value.toLocaleString();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            setupEventListeners() {
+                // Trends chart filters
+                document.getElementById('trends-metric').addEventListener('change', (e) => {
+                    this.onTrendsFilterChange();
+                });
+
+                document.getElementById('trends-property').addEventListener('change', (e) => {
+                    this.onTrendsFilterChange();
+                });
+
+                document.getElementById('trends-date-range').addEventListener('change', (e) => {
+                    this.onTrendsFilterChange();
+                });
+
+                document.getElementById('trends-breakdown').addEventListener('change', (e) => {
+                    this.onTrendsFilterChange();
+                });
+
+                // Sales chart filters
+                document.getElementById('sales-by').addEventListener('change', (e) => {
+                    this.onSalesFilterChange();
+                });
+
+                document.getElementById('sales-date-range').addEventListener('change', (e) => {
+                    this.onSalesFilterChange();
+                });
+
+                // Card filters
+                this.setupCardFilters();
+            }
+
+            setupCardFilters() {
+                const cards = ['accommodations', 'health', 'restaurants', 'total'];
+                cards.forEach(card => {
+                    document.getElementById(`${card}-month`).addEventListener('change', () => {
+                        this.updateCardData(card);
+                    });
+                    document.getElementById(`${card}-year`).addEventListener('change', () => {
+                        this.updateCardData(card);
+                    });
+                });
+            }
+
+            onTrendsFilterChange() {
+                const filters = {
+                    metric: document.getElementById('trends-metric').value,
+                    dateRange: document.getElementById('trends-date-range').value,
+                    property: document.getElementById('trends-property').value,
+                    breakdown: document.getElementById('trends-breakdown').value
+                };
+                
+                this.showLoadingSpinner('trends-chart');
+                this.loadTrendsChart(filters);
+            }
+
+            onSalesFilterChange() {
+                const filters = {
+                    salesBy: document.getElementById('sales-by').value,
+                    dateRange: document.getElementById('sales-date-range').value
+                };
+                
+                this.showLoadingSpinner('sales-chart');
+                this.loadSalesChart(filters);
+            }
+
+            updateTargetCards(data) {
+                // Update all target cards with backend data
+                Object.keys(data).forEach(cardType => {
+                    this.updateSingleTargetCard(cardType, data[cardType]);
+                });
+            }
+
+            updateSingleTargetCard(cardType, data) {
+                const currentEl = document.getElementById(`${cardType}-current`);
+                const targetEl = document.getElementById(`${cardType}-target`);
+                const progressEl = document.getElementById(`${cardType}-progress`);
+
+                if (currentEl) currentEl.textContent = `$${data.current.toLocaleString()}`;
+                if (targetEl) targetEl.textContent = `$${data.target.toLocaleString()}`;
+                
+                if (progressEl) {
+                    const percentage = Math.min((data.current / data.target) * 100, 100);
+                    progressEl.style.width = `${percentage}%`;
+                }
+            }
+
+            updateTrendsChart(data) {
+                this.hideLoadingSpinner('trends-chart');
+                
+                // Update chart title and summary
+                document.getElementById('trends-chart-title').textContent = data.title;
+                document.getElementById('trends-summary-1-label').textContent = data.summary.primary.label;
+                document.getElementById('trends-summary-1-value').textContent = data.summary.primary.value;
+                document.getElementById('trends-summary-2-label').textContent = data.summary.secondary.label;
+                document.getElementById('trends-summary-2-value').textContent = data.summary.secondary.value;
+
+                // Handle different chart types
+                if (data.chartType === 'pie') {
+                    this.switchToCompositionChart(data);
+                } else {
+                    this.switchToLineChart(data);
+                }
+            }
+
+            switchToLineChart(data) {
+                if (this.charts.trends.config.type === 'pie') {
+                    this.charts.trends.destroy();
+                    this.initializeTrendsChart();
+                }
+
+                this.charts.trends.data.labels = data.labels;
+                this.charts.trends.data.datasets[0].data = data.values;
+                this.charts.trends.data.datasets[0].label = data.datasetLabel;
+                this.charts.trends.data.datasets[0].borderColor = data.color;
+                this.charts.trends.data.datasets[0].backgroundColor = data.color + '1A';
+                this.charts.trends.update();
+            }
+
+            switchToCompositionChart(data) {
+                this.charts.trends.destroy();
+                const ctx = document.getElementById('trends-chart').getContext('2d');
+                this.charts.trends = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: data.labels,
+                        datasets: [{
+                            data: data.values,
+                            backgroundColor: data.colors
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            }
+
+            updateSalesChart(data) {
+                this.hideLoadingSpinner('sales-chart');
+                
+                // Update chart title and summary
+                document.getElementById('sales-chart-title').textContent = data.title;
+                document.getElementById('sales-summary-1-value').textContent = data.summary.total;
+                document.getElementById('sales-summary-2-value').textContent = data.summary.topItem;
+
+                // Update chart data
+                this.charts.sales.data.labels = data.labels;
+                this.charts.sales.data.datasets[0].data = data.values;
+                this.charts.sales.update();
+            }
+
+            showLoadingSpinner(chartId) {
+                const container = document.getElementById(chartId).parentElement;
+                const spinner = document.createElement('div');
+                spinner.className = 'loading-spinner';
+                spinner.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+                spinner.style.cssText = `
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    color: #6b7280;
+                    font-size: 1.1rem;
+                    z-index: 10;
+                `;
+                container.style.position = 'relative';
+                container.appendChild(spinner);
+            }
+
+            hideLoadingSpinner(chartId) {
+                const container = document.getElementById(chartId).parentElement;
+                const spinner = container.querySelector('.loading-spinner');
+                if (spinner) {
+                    spinner.remove();
+                }
+            }
+
+            showError(message) {
+                // Create error notification
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-notification';
+                errorDiv.innerHTML = `
+                    <div style="
+                        position: fixed;
+                        top: 20px;
+                        right: 20px;
+                        background: #ef4444;
+                        color: white;
+                        padding: 1rem;
+                        border-radius: 8px;
+                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                        z-index: 1000;
+                        max-width: 400px;
+                    ">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        ${message}
+                        <button onclick="this.parentElement.remove()" style="
+                            background: none;
+                            border: none;
+                            color: white;
+                            float: right;
+                            font-size: 1.2rem;
+                            cursor: pointer;
+                            margin-left: 10px;
+                        ">×</button>
+                    </div>
+                `;
+                document.body.appendChild(errorDiv);
+
+                // Auto-remove after 5 seconds
+                setTimeout(() => {
+                    if (errorDiv.parentElement) {
+                        errorDiv.remove();
+                    }
+                }, 5000);
+            }
+
+            getAuthToken() {
+                // Get authentication token from localStorage or sessionStorage
+                return localStorage.getItem('authToken') || sessionStorage.getItem('authToken');
+            }
+
+            async exportChart(chartId) {
+                try {
+                    const canvas = document.getElementById(chartId);
+                    const imageData = canvas.toDataURL('image/png');
+                    
+                    // Send to backend for processing/storage if needed
+                    const response = await fetch(`${this.apiBase}/export`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${this.getAuthToken()}`
+                        },
+                        body: JSON.stringify({
+                            chartId,
+                            imageData,
+                            timestamp: new Date().toISOString()
+                        })
+                    });
+
+                    if (response.ok) {
+                        // Download the image
+                        const link = document.createElement('a');
+                        link.download = `${chartId}-${new Date().toISOString().split('T')[0]}.png`;
+                        link.href = imageData;
+                        link.click();
+                    }
+                } catch (error) {
+                    console.error('Error exporting chart:', error);
+                    this.showError('Failed to export chart');
+                }
+            }
+
+            // Refresh data periodically
+            startAutoRefresh(intervalMinutes = 5) {
+                setInterval(() => {
+                    this.loadInitialData();
+                }, intervalMinutes * 60 * 1000);
+            }
+        }
+
+        // FAQ Toggle Function
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('.faq-icon');
+            
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                if (item !== answer) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            document.querySelectorAll('.faq-icon').forEach(item => {
+                if (item !== icon) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Toggle current item
+            answer.classList.toggle('active');
+            icon.classList.toggle('active');
+        }
+
+        // Export Chart Function (Global)
+        function exportChart(chartId) {
+            if (window.dashboard) {
+                window.dashboard.exportChart(chartId);
+            }
+        }
+
+        // Initialize Dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            window.dashboard = new AnalyticsDashboard();
+            
+            // Start auto-refresh every 5 minutes
+            window.dashboard.startAutoRefresh(5);
+        });
+
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                });
+            });
+        });
+
+        // Logout functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoutBtn = document.querySelector('.logout-btn');
+            
+            logoutBtn.addEventListener('click', async function() {
+                if (confirm('Are you sure you want to logout?')) {
+                    try {
+                        await fetch('/api/auth/logout', {
+                            method: 'POST',
+                            headers: {
+                                'Authorization': `Bearer ${localStorage.getItem('authToken') || sessionStorage.getItem('authToken')}`
+                            }
+                        });
+                        
+                        // Clear tokens
+                        localStorage.removeItem('authToken');
+                        sessionStorage.removeItem('authToken');
+                        
+                        // Redirect to login
+                        window.location.href = '../login.html';
+                    } catch (error) {
+                        console.error('Logout error:', error);
+                        // Force logout on error
+                        window.location.href = '../login.html';
+                    }
+                }
+            });
+        });
+
+        // Handle network errors globally
+        window.addEventListener('online', function() {
+            if (window.dashboard) {
+                window.dashboard.loadInitialData();
+            }
+        });
+
+        window.addEventListener('offline', function() {
+            if (window.dashboard) {
+                window.dashboard.showError('Connection lost. Some features may not work properly.');
+            }
+        });
+    </script>
+
+</body>
+</html>

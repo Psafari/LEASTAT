@@ -27,14 +27,14 @@
 body {
     font-family: var(--font-family);
     background-color: var(--background-color);
-    color: var(--text-dark);
+    color: white;
     line-height: 1.6;
     font-size: 14px;
 }
 
 /* Navigation*/
 .navbar {
-    background-color: var(--white);
+    background-color: var(--primary-color);
     border-bottom: 1px solid var(--border-color);
     box-shadow: var(--shadow-sm);
     position: sticky;
@@ -53,14 +53,14 @@ body {
 }
 
 .nav-brand h2 {
-    color: var(--primary-color);
+    color: white;
     font-size: 24px;
     font-weight: 700;
     margin-bottom: 2px;
 }
 
 .nav-tagline {
-    color: var(--text-light);
+    color: white;
     font-size: 12px;
     font-weight: 400;
 }
@@ -72,7 +72,7 @@ body {
 
 .nav-link {
     text-decoration: none;
-    color: var(--text-light);
+    color: white;
     font-weight: 500;
     padding: 8px 16px;
     border-radius: var(--border-radius);
@@ -81,13 +81,14 @@ body {
 }
 
 .nav-link:hover {
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
+    text-decoration: underline;
+    color: white;
+    
 }
 
 .nav-link.active {
     color: var(--primary-color);
-    background-color: var(--secondary-color);
+    background-color: white;
     font-weight: 600;
 }
 
@@ -105,14 +106,14 @@ body {
 
 .user-name {
     font-weight: 500;
-    color: var(--text-dark);
+    color: white;
 }
 
 .user-avatar {
     width: 36px;
     height: 36px;
-    background-color: var(--primary-color);
-    color: var(--white);
+    background-color: white;
+    color: var(--primary-color);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -122,9 +123,9 @@ body {
 }
 
 .logout-btn {
-    background-color: transparent;
-    border: 1px solid var(--border-color);
-    color: var(--text-dark);
+    background-color: var(--error-color);
+    border: none;
+    color: white;
     padding: 8px 16px;
     border-radius: var(--border-radius);
     cursor: pointer;
@@ -136,6 +137,7 @@ body {
     background-color: var(--error-color);
     color: var(--white);
     border-color: var(--error-color);
+    transform: translateY(-2px);
 }
 
 /* Main Content */
@@ -200,10 +202,11 @@ body {
 }
 
 .stat-icon {
-    font-size: 32px;
-    width: 60px;
-    height: 60px;
-    background-color: var(--secondary-color);
+    font-size: 28px;
+    width: 48px;
+    height: 48px;
+    background-color: var(--background-color);
+    color: var(--primary-color);
     border-radius: var(--border-radius);
     display: flex;
     align-items: center;
@@ -211,7 +214,7 @@ body {
 }
 
 .stat-content h3 {
-    color: var(--text-light);
+    color: var(--primary-color);
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 4px;
@@ -297,6 +300,7 @@ body {
     align-items: center;
     justify-content: center;
     background-color: var(--white);
+    color:var(--primary-color);
     border-radius: var(--border-radius);
 }
 
@@ -834,3 +838,12 @@ body {
     100% { left: 100%; }
 }
     
+
+
+/* Add this to your CSS file to handle PDF file icons */
+.file-item .file-icon i.fa-file-pdf {
+    color: #ff6b6b; /* Red color for PDF files */
+}
+
+/* You can also update your JavaScript to show appropriate icons */
+/*the analytics specific styling*/

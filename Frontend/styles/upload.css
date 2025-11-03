@@ -1,165 +1,5 @@
-
-/* Global */
-:root {
-    --primary-color: #21273d;
-    --secondary-color: #b9d4f1;
-    --background-color: #f1f6f8;
-    --white: #ffffff;
-    --text-dark: #21273d;
-    --text-light: #6b7280;
-    --border-color: #e5e7eb;
-    --success-color: #10b981;
-    --warning-color: #f59e0b;
-    --error-color: #ef4444;
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --border-radius: 8px;
-    --border-radius-lg: 12px;
-    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: var(--font-family);
-    background-color: var(--background-color);
-    color: var(--text-dark);
-    line-height: 1.6;
-    font-size: 14px;
-}
-
-/* Navigation*/
-.navbar {
-    background-color: var(--white);
-    border-bottom: 1px solid var(--border-color);
-    box-shadow: var(--shadow-sm);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.nav-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 70px;
-}
-
-.nav-brand h2 {
-    color: var(--primary-color);
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 2px;
-}
-
-.nav-tagline {
-    color: var(--text-light);
-    font-size: 12px;
-    font-weight: 400;
-}
-
-.nav-menu {
-    display: flex;
-    gap: 32px;
-}
-
-.nav-link {
-    text-decoration: none;
-    color: var(--text-light);
-    font-weight: 500;
-    padding: 8px 16px;
-    border-radius: var(--border-radius);
-    transition: all 0.2s ease;
-    position: relative;
-    cursor: pointer;
-}
-
-.nav-link:hover {
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
-}
-
-.nav-link.active {
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
-    font-weight: 600;
-}
-
-.nav-user {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.user-profile {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.user-name {
-    font-weight: 500;
-    color: var(--text-dark);
-}
-
-.user-avatar {
-    width: 36px;
-    height: 36px;
-    background-color: var(--primary-color);
-    color: var(--white);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.logout-btn {
-    background-color: transparent;
-    border: 1px solid var(--border-color);
-    color: var(--text-dark);
-    padding: 8px 16px;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.2s ease;
-}
-
-.logout-btn:hover {
-    background-color: var(--error-color);
-    color: var(--white);
-    border-color: var(--error-color);
-}
-
-/* Main Content */
-.main-content {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 32px 24px;
-}
-
-.content-section {
-    display: none;
-    animation: fadeIn 0.3s ease-in-out;
-}
-
-.content-section.active {
-    display: block;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+/* Upload Page Specific Styles - Synced with main.css */
+/* Most global styles are inherited from main.css */
 
 /* Upload Section Styles */
 .upload-header {
@@ -316,6 +156,10 @@ body {
     display: none;
 }
 
+#validationMessage {
+    color: var(--primary-color);
+}
+
 .upload-progress {
     background-color: var(--white);
     padding: 24px;
@@ -388,8 +232,8 @@ body {
 .file-icon {
     width: 32px;
     height: 32px;
-    background-color: var(--primary-color);
-    color: var(--white);
+    background-color: var(--white);
+    color: var(--primary-color);
     border-radius: var(--border-radius);
     display: flex;
     align-items: center;
@@ -433,25 +277,13 @@ body {
     color: var(--error-color);
 }
 
+/* PDF file icon specific styling */
+.file-item .file-icon i.fa-file-pdf {
+    color: #ff6b6b;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
-    .nav-container {
-        flex-direction: column;
-        height: auto;
-        padding: 16px;
-        gap: 16px;
-    }
-    
-    .nav-menu {
-        gap: 16px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .main-content {
-        padding: 24px 16px;
-    }
-    
     .upload-form-container {
         padding: 20px;
     }
@@ -465,4 +297,45 @@ body {
     }
 }
 
-.hidden { display: none; }
+.hidden { 
+    display: none; 
+}
+
+/* Add this to upload.css */
+
+/* Revenue Type Select Styling */
+.form-group select[name="revenue_type"] {
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+}
+
+/* Style when revenue type is selected (for revenue files) */
+.form-group select[name="revenue_type"]:not(:disabled) {
+    border-color: var(--primary-color);
+    background-color: rgba(185, 212, 241, 0.2); /* Light blue background */
+    box-shadow: 0 0 0 2px rgba(33, 39, 61, 0.1);
+}
+
+/* Style when required for revenue files */
+.revenue-required select[name="revenue_type"] {
+    border-color: var(--error-color);
+    background-color: rgba(239, 68, 68, 0.05);
+}
+
+/* Style for the select dropdown arrow */
+.form-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 36px;
+}
+
+/* Add this to make the label stand out when revenue type is required */
+.revenue-required label {
+    color: var(--error-color);
+    font-weight: 600;
+}

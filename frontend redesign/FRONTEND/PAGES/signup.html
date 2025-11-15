@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup-Leastat</title>
+</head>
+<body>
+
+    <div class="signup-form-container">
+        
+        <div class="form-elements">
+            <div class="actions">
+                <span>Signin</span>
+                <span>SignUp</span>
+            </div>
+
+            <div class="name-section">
+                <label for="firstname">First Name</label>
+                <input id="firstname" type="text" name="first_name" required> 
+                <label for="lastname">Last Name</label>
+                <input id="lastname" type="text" name="last_name" required>                
+            </div>               
+        
+            <div class="email-section">
+                <label for="email">Email</label>
+                <input id="email" type="email" name="user_email" placeholder="eg.theleasidegroup.com"> <!--the name value is what whatever theinput is gets assigned to and sent to db-->
+            </div>   
+            <div class="department-section">
+                <label for="Department">Department</label>
+                <select id="Department" name="user_department" required> 
+                    <option value="" hidden>Select Department</option>
+                    <option value="frontdesk assistant">Frontdesk Assistant</option>
+                    <option value="manager">Manager</option>
+                </select>  
+            </div>    
+            <div class="password-section">
+                <label for="password">Password</label>
+                <input id="password" type="password" name="user_password" required>
+            </div>
+            <div class="confirm-password-section">
+                <label for="confirm-password-section">Confirm Password</label>
+                <input id="confirm-password-section" type="password" name="user_password_confirm" required>
+            </div>            
+            <div class="submit-button-section">
+                <button>Create Account</button>
+            </div>
+        </div>
+
+    </div>
+    
+    <footer>
+        © 2025 Leastat Analytics. All rights reserved.  
+        Contact: support@leastat.io  
+        Privacy Policy | Terms of Service  
+        Version 1.0.0
+    </footer>    
+
+    
+</body>
+</html>

@@ -1,0 +1,222 @@
+*{
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+}
+/*links*/
+a{
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Sora', Arial, Helvetica, sans-serif;
+    /* Sets the main font for the entire page */
+
+    font-weight: 400;
+    /* Uses the regular (normal) font weight */
+
+    min-height: 100vh;
+    /* Ensures the body is at least the full height of the viewport */
+
+    position: relative;
+    /* Required so the ::before background layer can attach relative to the body */
+}
+
+
+/* ================================
+   Background with gradient masking
+   ================================ */
+body::before {
+    content: "";
+    /* Creates an empty pseudo-element to hold the background image */
+
+    position: fixed;
+    /* Makes the background stay fixed in place, even when scrolling */
+
+    inset: 0;
+    /* Same as: top: 0; right: 0; bottom: 0; left: 0; 
+       Stretches this layer to cover the entire viewport */
+
+    z-index: -2;
+    /* Sends the background layer behind all page content */
+
+    background-image: url('../ASSETS/LANDING.jpg');
+    /* The background image you want to display */
+
+    background-size: cover;
+    /* Makes the image completely cover the screen without distortion */
+
+    background-position: top;
+    /* Aligns the image at the top of the screen */
+
+    background-repeat: no-repeat;
+    /* Prevents the image from repeating */
+
+}
+
+body::after{
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    /* Sits above the image but behind content */
+    
+    background: linear-gradient(
+        to bottom, 
+        transparent 0%, 
+        rgba(6, 36, 60, 0.9) 50%,
+        /* Your color at 30% opacity halfway down */
+        
+        rgba(6, 36, 60, 0.9) 80%,
+        /* Your color at 80% opacity */
+        
+        rgb(6, 36, 60) 100%
+        /* Solid color at bottom */    );
+}
+
+
+
+
+:root {
+    /*font set*/
+  --font-primary: 'Sora', sans-serif;
+  --font-secondary: 'Arial', sans-serif;
+
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /*colors*/
+  --deep: #06243C;
+  --light: #41ABFF;
+  --plain: #EAF6FF;
+  --red: #FF2727;
+  --green:#09FF04;
+  
+}
+
+/*
+.action-buttons-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 80px;
+    gap: 30px;
+    font-family: var(--font-primary);
+    font-weight: var(--weight-semibold);
+    font-size: 35px;
+
+    
+}
+
+#login-button{
+    background-color: white;
+    color:var(--deep);
+    text-decoration: none;
+    text-align: center;
+    text-align: center;
+    padding: 8px 30px;
+    border-radius: 8px;
+
+    
+
+}
+#signup-button{
+    background-color: var(--light);
+    color:var(--deep);
+    text-align: center;
+    padding: 8px 30px;
+    border-radius: 8px;
+}
+
+#signup-button:visited{
+    background-color: var(--light);
+    color:white;
+    text-align: center;    
+
+
+}
+*/
+
+/*HERO SECTION*/
+.hero-section{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 10px;
+    height: 90vh;
+    
+    margin-top: 30px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+      
+}
+
+
+#leastat{
+    
+    color: var(--plain);
+    border-radius: 15px;
+    font-size: 40px;
+}
+
+
+/*GET STARTED*/
+
+#get-started{
+    font-size: 25px;
+    width:400px;
+    background-color: var(--light);
+    color: white;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+       
+}
+
+#get-started a:visited{
+       color:var(--plain)
+}
+#get-started a:link{
+       color: var(--plain);
+}
+
+
+/*To sign in*/
+
+#to-signin{
+    font-size: 14;
+    color: var(--plain);
+    
+}
+
+#to-signin a:hover{
+       text-decoration: underline;
+}
+#get-started a:link{
+       color: var(--plain);
+}
+#to-signin a:visited{
+       color:var(--light)
+}
+#to-signin a:link{
+       color: var(--light);
+}
+
+
+/*footer*/
+
+footer{
+    position:relative;
+    bottom: 0;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+    color: var(--plain);
+}
+
+/*actual background*/

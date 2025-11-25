@@ -1,0 +1,204 @@
+*{
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+/*ROOT*/
+:root {
+    /*font set*/
+  --font-primary: 'Sora', sans-serif;
+  --font-secondary: 'Arial', sans-serif;
+
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /*colors*/
+  --deep: #06243C;
+  --light: #41ABFF;
+  --plain: #EAF6FF;
+  --red: #FF2727;
+  --green:#09FF04;
+  
+}
+
+
+/*links*/
+a{
+    text-decoration: none;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Sora', Arial, Helvetica, sans-serif;
+    /* Sets the main font for the entire page */
+
+    font-weight: 400;
+    /* Uses the regular (normal) font weight */
+
+    min-height: 100vh;
+    /* Ensures the body is at least the full height of the viewport */
+    background-color: var(--deep);
+    
+
+}
+
+/*welcome section*/
+#welcome-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    width: 100%;
+    padding: 5px;
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 40px;
+}
+#welcome-section p:first-child{
+    font-size: 30px;
+    font-weight: var(--weight-bold);
+}
+#welcome-section p:last-child{
+    font-size: 13px;
+    font-weight: var(--weight-regular);
+    opacity: 0.8;
+}
+
+
+
+/*LOGIN FORM CONTAINER*/
+.login-form-container{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--deep);
+    align-items: center;
+    padding: 40px 20px; /*space inside this form*/
+    margin-bottom: 90px;
+    box-shadow: 0 4px 20px  rgba(0,0,0,.3);
+    border-radius: 10px;
+    
+    height: 350px;
+    width: clamp(350px,45%,400px);
+    font-size: 13px;
+
+}
+
+/*login border hover*/
+.login-form-container:hover{
+    border: 1px solid var(--light);
+}
+
+
+
+/*email section*/
+#email-section{
+    display: flex;
+    flex-direction: column;
+    color:white;
+    
+}
+
+/*department section*/
+
+#department-section{
+    display: flex;
+    flex-direction: column;
+    color:white;
+}
+
+/*password section*/
+#password-section{
+    display: flex;
+    flex-direction: column;
+    color:white;
+}
+#forgot-password {
+    align-self: flex-end;
+    font-weight: var(--weight-regular);
+    font-size: 10px;
+}
+#forgot-password:hover{
+    text-decoration: underline;
+}
+#forgot-password:active{
+    color: white;
+}
+#forgot-password:visited{
+    color: white;
+}
+#forgot-password:link{
+    color: white;
+}
+
+.input{
+    margin-bottom:20px;
+    width:100%;
+}
+.input input,
+.input select{
+    padding: 10px;
+    border:1px solid  var(--light);
+    border-radius: 8px;
+    border: none;
+}
+
+
+/*submit section*/
+.submit-button-section{
+    
+    width: 100%;
+    padding: 10px 20px;
+    background-color: var(--light);
+    color:white;
+    font-size: 19px;
+    font-weight: var(--weight-semibold);
+    text-align: center;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*footer*/
+
+footer{
+    position:relative;
+    bottom: 0;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+    color: white;
+}
